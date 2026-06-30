@@ -1,0 +1,71 @@
+name: CI (Grand Strategy Quality Gates)
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  # ==========================================
+  #  RUST 
+  # ==========================================
+  rust-quality-gate:
+    name: Rust (Format, Lint & Test)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+
+      # Cache
+      - name: Rust Cache Manager
+        uses: Swatinem/rust-cache@v2
+
+      # Style and formatting
+      - name: Check Rust Formatting
+        run: cargo fmt --all -- --check
+
+      # Run Clippy Static Analysis
+      - name: Run Clippy Static Analysis
+        run: cargo clippy --all-targets --all-features -- -D warnings
+
+      # Run All Rust Tests
+      - name: Run All Rust Tests
+        run: cargo test --workspace --all-features
+
+  # ==========================================
+  # PYTHONIE (AI)
+  # ==========================================
+#   python-quality-gate:
+#     name: Python (Lint & Test)
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+
+#       - name: Set up Python Environment
+#         uses: actions/setup-python@v5
+#         with:
+#           python-version: '3.12'
+#           cache: 'pip' 
+
+#       - name: Install Dependencies
+#         run: |
+#           python -m pip install --upgrade pip
+#           pip install ruff pytest
+#           if [ -f ml_brain/requirements.txt ]; then pip install -r ml_brain/requirements.txt; fi
+
+#       - name: Run Ruff Linter
+#         run: ruff check ml_brain/
+
+#       - name: Run Python & E2E Tests
+#         run: |
+#           pytest ml_brain/tests/
+#           # pytest tests/e2e_simulations/

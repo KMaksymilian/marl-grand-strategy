@@ -1,0 +1,80 @@
+# ====================================================================
+#  .GITIGNORE - MARL GRAND STRATEGY (2026)
+# ====================================================================
+
+### 1. RUST & CARGO WORKSPACE CONFIG ###
+target/
+debug/
+.idea/
+**/*.rs.bk
+*.pdb
+
+### 2. MACHINE LEARNING & AI SAFEGUARDS ###
+*.pt
+*.pth
+*.pkl
+*.h5
+*.safetensors
+*.onnx
+**/checkpoints/
+**/models_out/
+
+# Logs
+*.tfevents.*
+**/runs/
+**/tensorboard/
+**/wandb/
+
+# Data Snapshots
+*.log
+*.csv
+*.jsonl
+db.sqlite3
+db.sqlite3-journal
+
+### 3. PYTHON ENVIRONMENT ###
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Env
+.env
+.venv
+env/
+venv/
+ENV/
+lib/
+lib64/
+
+# Managers
+pyrightconfig.json
+poetry.toml
+.pdm.toml
+__pypackages__/
+
+### 4. VISUAL STUDIO CODE ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+.history/
+.ionide
+
+### 5. OBSIDIAN & DOCUMENTATION ###
+.obsidian/
+.trash/
+~$*.docx
+*.tmp
+
+### 6. SYSTEM FILES ###
+.DS_Store
+Thumbs.db

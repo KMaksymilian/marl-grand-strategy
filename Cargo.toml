@@ -1,0 +1,7 @@
+[workspace]
+members = [
+    "core",
+    "adapters",
+    "main_app",
+]
+resolver = "2"

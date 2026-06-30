@@ -1,0 +1,8 @@
+[package]
+name = "marl_grand_strategy"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+core_engine = { path = "../core" }
+adapters = { path = "../adapters" }
